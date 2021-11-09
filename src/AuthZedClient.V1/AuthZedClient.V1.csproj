@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>   
+
+    <!--Dependencies-->
+    <Protobuf Include="../../Protos/api-common-protos/google/api/annotations.proto" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />    
+    <Protobuf Include="../../Protos/grpc-gateway/protoc-gen-openapiv2/options/annotations.proto" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />    
+    <Protobuf Include="../../Protos/grpc-gateway/protoc-gen-openapiv2/options/openapiv2.proto" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />    
+    <Protobuf Include="../../Protos/protoc-gen-validate/validate/validate.proto" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />
+    <!-- V1 Services-->
+    <Protobuf Include="../../Protos/api/authzed/api/v1/core.proto" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" /> 
+    <Protobuf Include="../../Protos/api/authzed/api/v1/openapi.proto" GrpcServices="Client" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" /> 
+    <Protobuf Include="../../Protos/api/authzed/api/v1/permission_service.proto" GrpcServices="Client" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />
+    <Protobuf Include="../../Protos/api/authzed/api/v1/schema_service.proto" GrpcServices="Client" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />
+    <Protobuf Include="../../Protos/api/authzed/api/v1/watch_service.proto" GrpcServices="Client" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />
+    <!-- V1Alpha Services -->
+    <Protobuf Include="../../Protos/api/authzed/api/v1alpha1/schema.proto" GrpcServices="Client" AdditionalImportDirs="../../Protos/protoc-gen-validate;../../Protos/grpc-gateway;../../Protos/api;../../Protos/api-common-protos" />    
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

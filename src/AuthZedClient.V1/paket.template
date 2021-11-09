@@ -1,0 +1,14 @@
+id AuthZedClient.V1
+type project
+authors Andrew McGuier
+description A client library for AuthZed generated from the grpc signatures
+licenseExpression Apache-2.0
+projectUrl https://github.com/amcguier/authzed-dotnet
+repositoryUrl https://github.com/amcguier/authzed-dotnet
+repositoryBranch main
+dependencies
+    Google.Protobuf ~> LOCKED:Minor
+    Grpc.Net.Client ~> LOCKED:Minor
+    Google.Api.CommonProtos ~> LOCKED:Minor
+excludeddependencies
+    Grpc.Tools

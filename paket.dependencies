@@ -1,0 +1,7 @@
+source https://api.nuget.org/v3/index.json
+framework: netstandard2.0
+
+nuget Google.Protobuf
+nuget Grpc.Net.Client
+nuget Grpc.Tools
+nuget Google.Api.CommonProtos
