@@ -1,8 +1,10 @@
 id AuthZedClient.V1
+title AuthZedClient.V1
 type project
 authors Andrew McGuier
 description A client library for AuthZed generated from the grpc signatures
 licenseExpression Apache-2.0
+licenseUrl https://licenses.nuget.org/Apache-2.0
 projectUrl https://github.com/amcguier/authzed-dotnet
 repositoryUrl https://github.com/amcguier/authzed-dotnet
 repositoryBranch main

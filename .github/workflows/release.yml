@@ -1,0 +1,25 @@
+name: Upload to nuget
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pull submodules
+        run: git submodule update --init --recursive --depth 1
+      - name: Setup .NET Core SDK $
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Fake Build Script
+        run: dotnet fake build -t release
+        env:
+          NUGET_API_KEY: ${{secrets.NUGET_API_TOKEN}}
+          VERSION: ${{github.event.release.tag_name}}
