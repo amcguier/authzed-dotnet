@@ -14,6 +14,8 @@ open Fake.IO
 open Fake.IO.Globbing.Operators
 open Fake.DotNet
 
+let version = Environment.environVarOrDefault "VERSION" "0.0.1"
+let nugetKey = Environment.environVarOrDefault "NUGET_API_KEY" ""
 
 let v0 = "src/AuthZedClient.V0/AuthZedClient.V0.csproj"
 
@@ -51,7 +53,7 @@ let makePackOptions template (opt : Paket.PaketPackParams) =
     { opt with
         ToolType = ToolType.CreateLocalTool ()
         TemplateFile = template
-        Version = "0.0.1"
+        Version = version
         OutputPath = packageDir
         LockDependencies = true
     }    
@@ -64,6 +66,17 @@ Target.create "PackV0" (fun _ ->
 Target.create "PackV1" (fun _ ->
     Trace.log "--- publishing V1 ---"                                        
     Paket.pack (makePackOptions "src/AuthZedClient.V1/paket.template")    
+    )
+
+let makePushOptions (opt: Paket.PaketPushParams) =
+    { opt with
+        ToolType = ToolType.CreateLocalTool ()
+        ApiKey = nugetKey
+        PublishUrl = "https://api.nuget.org/v3/index.json" }
+
+Target.create "Release" (fun _ ->
+        !! $"{packageDir}/*nupkg"
+        |> Paket.pushFiles makePushOptions
     )
 
 
@@ -79,7 +92,6 @@ Target.create "Build" ignore
 "PackV0" ==> "Pack"
 "PackV1" ==> "Pack"
 
-
-
+"Clean" ==> "Pack" ==> "Release" 
 
 Target.runOrDefault "BuildV1"
